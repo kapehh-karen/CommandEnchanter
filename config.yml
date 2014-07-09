@@ -1,4 +1,5 @@
 commandenchanter:
+    evallevel: 'if (lvl > 10) (lvl - 10) * 300 + 1500; else if (lvl > 5) (lvl - 5) * 200 + 500; else lvl * 100;'
     sets:
         helmet: [ 298, 302, 306, 310, 314 ]
         chestplate: [ 299, 303, 307, 311, 315 ]

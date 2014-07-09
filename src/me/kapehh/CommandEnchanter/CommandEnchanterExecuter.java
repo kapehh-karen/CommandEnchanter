@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 public class CommandEnchanterExecuter implements CommandExecutor {
 
     @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+    public synchronized boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (!(commandSender instanceof Player)) {
             commandSender.sendMessage(ChatColor.RED + "You must be a player!");
             return true;
@@ -25,7 +25,6 @@ public class CommandEnchanterExecuter implements CommandExecutor {
         }
 
         CommandEnchanter.getCommandEnchanterManager().enchant((Player)commandSender);
-        commandSender.sendMessage("OK");
 
         /*
         ChatColor.RED + "An error occured: " + error;
@@ -40,6 +39,6 @@ public class CommandEnchanterExecuter implements CommandExecutor {
         }
          */
 
-        return false;
+        return true;
     }
 }

@@ -53,4 +53,14 @@ public class EnchantItem {
     public void setMaxlevel(int maxlevel) {
         this.maxlevel = maxlevel;
     }
+
+    @Override
+    public String toString() {
+        return "EnchantItem{" +
+                "name='" + name + '\'' +
+                ", allowsets=" + allowsets +
+                ", eid=" + eid +
+                ", maxlevel=" + maxlevel +
+                '}';
+    }
 }

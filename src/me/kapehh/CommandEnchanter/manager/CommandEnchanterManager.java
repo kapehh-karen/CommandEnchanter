@@ -1,5 +1,6 @@
 package me.kapehh.CommandEnchanter.manager;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class CommandEnchanterManager {
     }
 
     public boolean enchant(Player player) {
+        player.sendMessage(ChatColor.BLUE + enchantItems.toString());
         return true;
     }
 }

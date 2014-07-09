@@ -33,4 +33,12 @@ public class EnchantSet {
     public void setIds(List<Integer> ids) {
         this.ids = ids;
     }
+
+    @Override
+    public String toString() {
+        return "EnchantSet{" +
+                "name='" + name + '\'' +
+                ", ids=" + ids +
+                '}';
+    }
 }

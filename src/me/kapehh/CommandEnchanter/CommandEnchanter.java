@@ -7,6 +7,10 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 /**
  * Created by Karen on 09.07.2014.
  */
@@ -41,15 +45,28 @@ public class CommandEnchanter extends JavaPlugin {
         return instance;
     }
 
+    /*public static void main(String[] args) throws ScriptException {
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("js");
+        engine.put("lvl", 9);
+        Object result = engine.eval("if (lvl > 10) (lvl - 10) * 300 + 1500; else if (lvl > 5) (lvl - 5) * 200 + 500; else lvl * 100;");
+        System.out.println(result);
+    }*/
+
     @Override
     public void onEnable() {
         instance = this;
-        pluginConfig = new PluginConfig(this)
-            .addEventClasses(new CommandEnchanterConfig())
-            .setup()
-            .loadData();
         economy = PluginVault.setupEconomy();
         permission = PluginVault.setupPermissions();
+        if (economy == null || permission == null) {
+            getLogger().info("Vault not found!!!");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+        pluginConfig = new PluginConfig(this); // Initialize
+        pluginConfig.addEventClasses(new CommandEnchanterConfig())
+                    .setup()
+                    .loadData();
         getCommand("enchanterx").setExecutor(new CommandEnchanterExecuter());
     }
 
