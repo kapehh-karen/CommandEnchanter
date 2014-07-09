@@ -2,3 +2,7 @@ name: CommandEnchanter
 main: me.kapehh.CommandEnchanter.CommandEnchanter
 author: kapehh
 version: 1.0.0
+commands:
+    enchanterx:
+      usage: /<command> <enchant name> <enchant level>
+      description:
