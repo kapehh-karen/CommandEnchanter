@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="CommandEnchanter">
+    <output-path>$PROJECT_DIR$/out/artifacts/CommandEnchanter</output-path>
+    <root id="archive" name="CommandEnchanter.jar">
+      <element id="module-output" name="CommandEnchanter" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+      <element id="dir-copy" path="$PROJECT_DIR$/../PluginManager/out/production/PluginManager" />
+    </root>
+  </artifact>
+</component>
