@@ -47,6 +47,6 @@ public class CommandEnchanterConfig {
             enchantItem.setAllowsets(enchantSetList);
             enchantItems.add(enchantItem);
         }
-        CommandEnchanter.setCommandEnchanterManager(new CommandEnchanterManager(enchantItems));
+        CommandEnchanter.setCommandEnchanterManager(new CommandEnchanterManager(enchantItems, cfg.getString("commandenchanter.evalcost")));
     }
 }

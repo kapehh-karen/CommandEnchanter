@@ -46,14 +46,6 @@ public class CommandEnchanter extends JavaPlugin {
         return instance;
     }
 
-    /*public static void main(String[] args) throws ScriptException {
-        ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
-        engine.put("lvl", 9);
-        Object result = engine.eval("if (lvl > 10) (lvl - 10) * 300 + 1500; else if (lvl > 5) (lvl - 5) * 200 + 500; else lvl * 100;");
-        System.out.println(result);
-    }*/
-
     @Override
     public void onEnable() {
         if (getServer().getPluginManager().getPlugin("PluginManager") == null) {
