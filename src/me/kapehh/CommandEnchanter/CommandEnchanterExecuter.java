@@ -21,12 +21,22 @@ public class CommandEnchanterExecuter implements CommandExecutor {
 
     @Override
     public synchronized boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
+        if (args.length < 1) {
+            return false;
+        }
+
+        if (args[0].equalsIgnoreCase("reload") && CommandEnchanter.getPermission().has(commandSender, CommandEnchanterManager.PERM_RELOAD)) {
+            CommandEnchanter.getPluginConfig().loadData();
+            commandSender.sendMessage(ChatColor.GREEN + "Reloaded!");
+            return true;
+        }
+
         if (!(commandSender instanceof Player)) {
             commandSender.sendMessage(ChatColor.RED + "You must be a player!");
             return true;
         }
 
-        if (!CommandEnchanter.getPermission().has(commandSender, CommandEnchanterManager.PERM)) {
+        if (!CommandEnchanter.getPermission().has(commandSender, CommandEnchanterManager.PERM_USE)) {
             commandSender.sendMessage(ChatColor.RED + "You don't have permissions!");
             return true;
         }
@@ -54,7 +64,9 @@ public class CommandEnchanterExecuter implements CommandExecutor {
             if (moneyCost <= playerMoney) {
                 EconomyResponse r = economy.withdrawPlayer(player.getName(), moneyCost);
                 if(r.transactionSuccess()) {
-                    commandEnchanterManager.enchant(player, enchantName, enchantLvl);
+                    if (commandEnchanterManager.enchant(player, enchantName, enchantLvl)) {
+                        player.sendMessage(ChatColor.GREEN + "Enchant success!");
+                    }
                 } else {
                     player.sendMessage(ChatColor.RED + "An error occured: " + r.errorMessage);
                 }

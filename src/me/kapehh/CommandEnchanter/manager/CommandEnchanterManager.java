@@ -12,7 +12,8 @@ import java.util.List;
  * Created by Karen on 09.07.2014.
  */
 public class CommandEnchanterManager {
-    public static final String PERM = "commandenchanter.use";
+    public static final String PERM_USE = "commandenchanter.use";
+    public static final String PERM_RELOAD = "commandenchanter.reload";
 
     private List<EnchantItem> enchantItems;
     private String evalCost;
@@ -85,6 +86,7 @@ public class CommandEnchanterManager {
         for (EnchantItem enchantItem : enchantItems) {
             if (enchantItem.getName().equalsIgnoreCase(enchantName)) {
                 enchantment = Enchantment.getById(enchantItem.getEid());
+                break;
             }
         }
 
