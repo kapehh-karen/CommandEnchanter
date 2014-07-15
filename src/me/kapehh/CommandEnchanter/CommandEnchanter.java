@@ -1,6 +1,7 @@
 package me.kapehh.CommandEnchanter;
 
 import me.kapehh.CommandEnchanter.manager.CommandEnchanterManager;
+import me.kapehh.main.pluginmanager.checker.PluginChecker;
 import me.kapehh.main.pluginmanager.config.PluginConfig;
 import me.kapehh.main.pluginmanager.vault.PluginVault;
 import net.milkbowl.vault.economy.Economy;
@@ -55,23 +56,44 @@ public class CommandEnchanter extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        instance = this;
-        economy = PluginVault.setupEconomy();
-        permission = PluginVault.setupPermissions();
-        if (economy == null || permission == null) {
-            getLogger().info("Vault not found!!!");
+        if (getServer().getPluginManager().getPlugin("PluginManager") == null) {
+            getLogger().info("PluginManager not found!!!");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+
+        instance = this;
+
+        PluginChecker pluginChecker = new PluginChecker(this);
+        if (!pluginChecker.check("Vault")) {
+            return;
+        }
+
+        economy = PluginVault.setupEconomy();
+        permission = PluginVault.setupPermissions();
+        if (economy == null) {
+            getLogger().info("Economy plugin not found!!!");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         pluginConfig = new PluginConfig(this); // Initialize
         pluginConfig.addEventClasses(new CommandEnchanterConfig())
                     .setup()
                     .loadData();
+
         getCommand("enchanterx").setExecutor(new CommandEnchanterExecuter());
     }
 
     @Override
     public void onDisable() {
-        pluginConfig.saveData();
+        // PluginManager not found
+        if (instance == null) {
+            return;
+        }
+
+        if (pluginConfig != null) {
+            pluginConfig.saveData();
+        }
     }
 }

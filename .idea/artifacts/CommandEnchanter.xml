@@ -4,7 +4,6 @@
     <root id="archive" name="CommandEnchanter.jar">
       <element id="module-output" name="CommandEnchanter" />
       <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
-      <element id="dir-copy" path="$PROJECT_DIR$/../PluginManager/out/production/PluginManager" />
       <element id="file-copy" path="$PROJECT_DIR$/config.yml" />
     </root>
   </artifact>
