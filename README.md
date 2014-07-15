@@ -16,7 +16,7 @@ CommandEnchanter
 </ul>
 
 <b>Конфиг:</b>
-<code>commandenchanter:
+<pre>commandenchanter:
     evalcost: 'if (lvl > 10) (lvl - 10) * 300 + 1500; else if (lvl > 5) (lvl - 5) * 200 + 500; else lvl * 100;' # строка вычисления стоимости чарования, где lvl переменная с требуемым уровнем чара
     sets: # идет перечисление набор:предметы
         helmet: [ 298, 302, 306, 310, 314 ]
@@ -35,7 +35,7 @@ CommandEnchanter
         efficiency:
             allowsets: [ axe, hoe, shovel, pickaxe ]
             eid: 32
-            maxlevel: 12</code>
+            maxlevel: 12</pre>
 
 <b>Пример:</b>
 <ul>
