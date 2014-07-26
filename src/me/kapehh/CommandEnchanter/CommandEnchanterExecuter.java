@@ -66,6 +66,15 @@ public class CommandEnchanterExecuter implements CommandExecutor {
                 if(r.transactionSuccess()) {
                     if (commandEnchanterManager.enchant(player, enchantName, enchantLvl)) {
                         player.sendMessage(ChatColor.GREEN + "Enchant success!");
+                        CommandEnchanter.getPluginLogger().getLog().info(
+                            String.format(
+                                "Player '%s' enchant '%s' on level '%d'. Withdraw '%f'",
+                                player.getName(),
+                                enchantName,
+                                enchantLvl,
+                                moneyCost
+                            )
+                        );
                     }
                 } else {
                     player.sendMessage(ChatColor.RED + "An error occured: " + r.errorMessage);

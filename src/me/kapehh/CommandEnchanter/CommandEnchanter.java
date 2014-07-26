@@ -3,6 +3,8 @@ package me.kapehh.CommandEnchanter;
 import me.kapehh.CommandEnchanter.manager.CommandEnchanterManager;
 import me.kapehh.main.pluginmanager.checker.PluginChecker;
 import me.kapehh.main.pluginmanager.config.PluginConfig;
+import me.kapehh.main.pluginmanager.logger.PluginLogger;
+import me.kapehh.main.pluginmanager.logger.PluginLoggerFormatter;
 import me.kapehh.main.pluginmanager.vault.PluginVault;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -18,6 +20,7 @@ import javax.script.ScriptException;
 public class CommandEnchanter extends JavaPlugin {
     private static CommandEnchanter instance;
     private static PluginConfig pluginConfig;
+    private static PluginLogger pluginLogger;
     private static CommandEnchanterManager commandEnchanterManager;
     private static Permission permission;
     private static Economy economy;
@@ -44,6 +47,10 @@ public class CommandEnchanter extends JavaPlugin {
 
     public static CommandEnchanter getInstance() {
         return instance;
+    }
+
+    public static PluginLogger getPluginLogger() {
+        return pluginLogger;
     }
 
     @Override
@@ -74,6 +81,9 @@ public class CommandEnchanter extends JavaPlugin {
                     .setup()
                     .loadData();
 
+        pluginLogger = new PluginLogger(this, "enchant");
+        pluginLogger.setup();
+
         getCommand("enchanterx").setExecutor(new CommandEnchanterExecuter());
     }
 
@@ -86,6 +96,10 @@ public class CommandEnchanter extends JavaPlugin {
 
         if (pluginConfig != null) {
             pluginConfig.saveData();
+        }
+
+        if (pluginLogger != null) {
+            pluginLogger.shutDown();
         }
     }
 }
